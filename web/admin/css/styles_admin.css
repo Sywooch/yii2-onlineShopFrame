@@ -1,0 +1,95 @@
+* {
+    margin: 0px;
+}
+
+body{
+    margin: 0px;
+}
+header{
+    width: 100%;
+    height: 50px;
+    border-bottom: solid 2px;
+    margin-bottom: 20px;
+}
+
+header li{
+    float: left;
+    border-left: solid 2px;
+    list-style: none;
+}
+
+header li a{
+    line-height: 50px;
+    text-decoration: none; 
+    display: block;
+    padding: 0 20;
+    color: #065c04;
+}
+header li:last-child {
+    border-right: solid 2px;
+}
+.edit_goods{
+    float: left;
+    width: 400px;
+    text-align: center;
+    line-height: 50px;  
+}
+.cont {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+.catalog_menu {
+    min-width: 200px;
+    width: 20%;
+    float: left;
+}
+.catalog_menu ul{
+    height: auto;
+    margin-top: 10px;
+    margin-right: 20px;
+    padding-right: 20px;                                          
+    line-height: 33px;
+    border-right: 2px solid #000;
+}
+.catalog_menu li, .group_menu li{
+    list-style:none;
+}
+.catalog_menu a, .group_menu a{
+    text-decoration: none;
+    color: #065c04;
+}
+.goods_field{
+    float: left;
+    width: 78%;
+}
+.goods_field table, .goods_field input, .goods_field textarea{
+    width: 100%;
+}
+.group_menu {
+    display: none;
+    position: absolute;
+    left: 20px;
+    width: 180px;
+    background-color: #faf9b5;
+    line-height: 25px;
+    border: 2px solid #000;
+}
+#current_gr {
+    width: 150px;
+    color: #065c04;
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+.under_group {
+    display: none;
+    /*position: relative;
+    left: 180px;*/
+    line-height: 25px;
+    width: 200px;
+    background-color: #cffabe;
+    /*border: 1px solid #000;*/
+}
+
+

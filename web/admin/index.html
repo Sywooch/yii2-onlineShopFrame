@@ -1,0 +1,148 @@
+<?php
+header("Content-type: text/html; charset=utf-8");
+session_start(); 
+include ("admin_functions.php");
+?>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin</title>
+        <link href="css/styles_admin.css" rel="stylesheet" type="text/css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                
+        <!-- setup imgAreaSelect -->
+        <link rel="stylesheet" type="text/css" href="crop/css/imgareaselect-default.css" />
+        <script type="text/javascript" src="crop/scripts/jquery.imgareaselect.pack.js"></script>
+        <!-------------------------------->
+        
+        <script>
+$(document).ready(function() {
+    $("[value = update]").on('click', function(){
+        var curRow = $(this).closest('tr');
+        var data = $(this.form).serialize()+"&action=update";
+        $.ajax({
+            type: "POST",
+            url: "action/update_goods.php",
+            data: data,
+            cache: false,
+            beforeSend: function(){
+                curRow.css("background","#f23131");
+            },
+            success: function(){
+                curRow.css("background","");
+            }
+        });
+        return false;
+    });
+    $("[value = copy]").on('click', function(){
+        var sure = confirm('copy?');
+        alert(sure); 
+        if (sure){return true}else{return false};
+    });
+    
+    $(".lamp").on('click', function(){
+        var curLamp = $(this);
+        var curImg = $(this).children();
+        var status = $(this).attr('value');
+        var data = $(this.form).serialize()+"&action="+status;
+        $.ajax({
+            type: "POST",
+            url: "action/update_goods.php",
+            data: data,
+            cache: false,
+            success: function(){
+                if (status == "show_on"){
+                    curLamp.attr('value','show_off');
+                    curImg.attr('src','img/on.png');
+                }else{
+                    curLamp.attr('value','show_on');
+                    curImg.attr('src','img/off.png');
+                };
+            }
+        });
+        return false;
+    });
+	
+	$(".cat_switch").on('click', function(){
+		var span_id_color = $(this).next();
+		var status = $(this).prop("checked"); //if was unchecked then status = true AND if was checked then status = false
+        var data = $(this.form).serialize()+"&action=update_prod_cat";
+        $.ajax({
+            type: "POST",
+            url: "action/update_goods.php",
+            data: data,
+            cache: false,
+			success: function(){
+				if(status==true){
+					span_id_color.css("color","red");
+				}
+				if(status==false){
+					span_id_color.css("color","black");
+				}
+			}			
+        });
+    });
+    
+    function preview(img, selection) {
+        var scaleX = 100 / (selection.width || 1);
+        var scaleY = 100 / (selection.height || 1);
+        var imgURL = $(img).attr('src');
+        $('#preview').css({
+            position: 'relative',
+            overflow: 'hidden',
+            width: '100px',
+            height: '100px'            
+        }).html('<img src='+imgURL+' style="position: relative;" />').children().css({
+            width: Math.round(scaleX * img.clientWidth) + 'px',
+            height: Math.round(scaleY * img.clientHeight) + 'px',
+            marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+            marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+        });
+    };
+    
+    $("#targetImg").imgAreaSelect({
+        handles: true,
+        aspectRatio: "1:1",
+        minHeight: "190",
+        x1: 20, 
+        y1: 20, 
+        x2: 210, 
+        y2: 210,
+        onSelectChange: preview,
+        onSelectEnd: function (img, selection) {
+            $('input[name=x1]').val(selection.x1);
+            $('input[name=y1]').val(selection.y1);
+            $('input[name=w]').val(selection.width);
+            $('input[name=h]').val(selection.height);
+        }
+        
+    });
+	
+    $("#current_gr").mouseenter(
+            function(){
+                    $(this).css('cursor', 'pointer');
+                    $(".group_menu").slideDown(100);
+                    $(".group_menu li").mouseenter(
+                                function(){
+                                    $(this).next().slideDown(100);
+                                    $(".under_group").mouseleave(function(){$(".under_group").slideUp(100)})
+                                }
+                    );
+                    $(this).next().mouseleave(function(){$(".group_menu").slideUp(100)})
+            }
+    );
+	
+});
+
+
+        </script>
+    </head>
+    
+    <body>
+        
+<?php  chek_login(); ?>
+    
+    </body>
+</html>

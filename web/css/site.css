@@ -1,0 +1,264 @@
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/************************************************************************************************************************************************************************/
+
+
+.thumbnail{
+    height: 368px;
+}
+
+.catalogItemView h2{
+    font-size: 18px;
+    line-height: 19px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: 38px;
+    overflow: hidden;
+
+}
+.image-block{
+    max-width: 250px;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-block a{
+    display: block;
+    height: 180px;
+}
+
+.thumbnail .caption{
+    padding: 0 10px;
+    color: #000;
+}
+.dscr{
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.price{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.inputRow{
+    line-height: 34px;
+}
+
+.vkorzinuButton{
+    width: 90px;
+}
+
+.cartUpdButton {
+    height: 80px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #C6C6C6;
+}
+.cartUpdButton button {
+    margin: 2px 0;
+    width: 135px;
+}
+.cartUpdButton a, #goToStep_2 a{
+    color: #000000;
+}
+
+
+/*
+* Кнопка вверх
+*/
+#back-top {
+    position: fixed;
+    bottom: 50px;
+    margin-left: 100px;
+    display: none;
+}
+#back-top a {
+    width: 50px;
+    display: block;
+    text-align: center;
+
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover {
+    color: #000;
+}
+#back-top span {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin-bottom: 7px;
+    background: #494649 url(../images/up-arrow.png) no-repeat center center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+#back-top a:hover span {
+    background-color: #f0b17a;
+}
+
+
+/*
+* Всякая мелочовка
+*
+*/
+
+#cartOnUpMenu{
+    background-repeat: no-repeat;
+    background-position: 7% 50%;
+    background-color: rgba(200,200,200,0.99);
+    border-radius: 0 0 0 15px;
+
+    position: fixed;
+    top: 50px;
+    right: 0;
+    z-index: 1031;
+}
+#cartOnUpMenu a{
+    display: block;
+    color: #002137;
+    text-decoration: none;
+    padding: 5px 10px;
+    padding-left: 50px;
+}
+
+.orderHead{
+    cursor: pointer;
+}
+.orderBody{
+    display: none;
+}
+.orderBodyTable{
+    width: 98%;
+    float: right;
+    background-color: #f0f0f0;
+}
+
+#relatedSell{
+    background-color: #C6C6C6;
+    padding: 10px;
+    color: black;
+}
+#relatedSell>p {
+    font-size: 18px;
+}
+#relatedSell .name{
+    max-height: 40px;
+    overflow: hidden;
+}
+
+.footer{
+    color: #000;
+}
+.navbar-footer{
+    padding-top: 15px;
+}
+
+
+
+/*
+* КОРЗИНА
+*/
+.cart-index #bodyStep_2 form{
+    padding: 30px;
+}
+.cart-index #bodyStep_2 form label{
+    font-weight: normal;
+}
+.cart-index #bodyStep_2 form .form-group {
+    margin-bottom: 5px;
+}
