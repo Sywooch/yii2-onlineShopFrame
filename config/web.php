@@ -11,7 +11,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '708bnlPPiYIVDRlinlzOPJyeqsybMu37',
+            'cookieValidationKey' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -52,14 +52,13 @@ $config = [
                 '<_c:products>/<_a:update-cart>' => '/products/update-cart',
                 '<_c:order>/<_a:make>' => '/order/make',
 
+                '<_m:user>/<_c:[\w\-]+>/<_a:[\w\-]+>' => '/user/<_c>/<_a>',
 
-                'catalog/<topGrName:[\p{Thai}+\-\~\w+]+>/<grName:[\p{Thai}+\-\~\w+]+>' => '/products/catalog',
-                //'catalog/<grName:[\p{Thai}+\-\~\w+]+>' => 'products/catalog',
-
-
-                '<topGrName:[\p{Thai}+\-\~\w+]+>/<grName:[\p{Thai}+\-\~\w+]+>/<catName:[\p{Thai}+\-\~\w+]+>' => '/products/index',
-                '<grName:[\p{Thai}+\-\~\w+]+>/<catName:[\p{Thai}+\-\~\w+]+>' => '/products/index',
-                '<catName:[\p{Thai}+\-\~\w+]+>' => '/products/index',
+                'catalog/<topGrName:[\w+\-\~]+>/<grName:[\w+\-\~]+>' => '/products/catalog',
+                
+                '<topGrName:[\w+\-\~]+>/<grName:[\w+\-\~]+>/<catName:[\w+\-\~]+>' => '/products/index',
+                '<grName:[\w+\-\~]+>/<catName:[\w+\-\~]+>' => '/products/index',
+                '<catName:[\w+\-\~]+>' => '/products/index',
 
                 [
                     'pattern' => 'view/<goodsName:[\w+\-\~]+>',

@@ -1,7 +1,7 @@
 <?php
 /*
- * Изменения касаются только рендиринга вида. Вместо метода render использую renderPartial 
- * для того чтобы вид формы открывался чистым в fancybox iframe
+ * Допил метода регистрации.
+ * Добавил авто регистрацию при оформлении заказа
  */
 
 /*
@@ -18,7 +18,6 @@ namespace app\controllers\user;
 use dektrium\user\controllers\RegistrationController as BaseRegistrationController;
 use Yii;
 use dektrium\user\models\RegistrationForm;
-use dektrium\user\models\ResendForm;
 use dektrium\user\models\User;
 use yii\web\NotFoundHttpException;
 
@@ -128,107 +127,15 @@ class RegistrationController extends BaseRegistrationController
         }
         
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
-            return $this->renderPartial('/message', [
+            return $this->render('/message', [
                 'title'  => Yii::t('user', 'Your account has been created'),
                 'module' => $this->module,
             ]);
         }
 
-        return $this->renderPartial('register', [
+        return $this->render('register', [
             'model'  => $model,
             'module' => $this->module,
         ]);
-    }
-    
-    /**
-     * Displays page where user can create new account that will be connected to social account.
-     *
-     * @param string $code
-     *
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionConnect($code)
-    {
-        $account = $this->finder->findAccount()->byCode($code)->one();
-
-        if ($account === null || $account->getIsConnected()) {
-            throw new NotFoundHttpException();
-        }
-
-        /** @var User $user */
-        $user = Yii::createObject([
-            'class'    => User::className(),
-            'scenario' => 'connect',
-            'username' => $account->username,
-            'email'    => $account->email,
-        ]);
-
-        if ($user->load(Yii::$app->request->post()) && $user->create()) {
-            $account->connect($user);
-            Yii::$app->user->login($user, $this->module->rememberFor);
-            return $this->goBack();
-        }
-
-        return $this->renderPartial('connect', [
-            'model'   => $user,
-            'account' => $account,
-        ]);
-    }
-    
-    /**
-     * Displays page where user can request new confirmation token. If resending was successful, displays message.
-     *
-     * @return string
-     * @throws \yii\web\HttpException
-     */
-    public function actionResend()
-    {
-        if ($this->module->enableConfirmation == false) {
-            throw new NotFoundHttpException();
-        }
-
-        /** @var ResendForm $model */
-        $model = Yii::createObject(ResendForm::className());
-
-        $this->performAjaxValidation($model);
-
-        if ($model->load(Yii::$app->request->post()) && $model->resend()) {
-            return $this->renderPartial('/message', [
-                'title'  => Yii::t('user', 'A new confirmation link has been sent'),
-                'module' => $this->module,
-            ]);
-        }
-
-        return $this->renderPartial('resend', [
-            'model' => $model,
-        ]);
-    }
-    
-    /**
-     * Confirms user's account. If confirmation was successful logs the user and shows success message. Otherwise
-     * shows error message.
-     *
-     * @param int    $id
-     * @param string $code
-     *
-     * @return string
-     * @throws \yii\web\HttpException
-     */
-    public function actionConfirm($id, $code)
-    {
-        $user = $this->finder->findUserById($id);
-
-        if ($user === null || $this->module->enableConfirmation == false) {
-            throw new NotFoundHttpException();
-        }
-
-        $user->attemptConfirmation($code);
-
-        return $this->render('/messageNoBody', [
-            'title'  => Yii::t('user', 'Account confirmation'),
-            'module' => $this->module,
-        ]);
-    }
- 
+    } 
 }

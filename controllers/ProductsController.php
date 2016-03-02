@@ -2,23 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\ElCatalog;
-use app\models\ElGroupofcat;
-use app\models\ElGroupofgroups;
 use app\models\FshCatalog;
 use app\models\FshGroupofcat;
 use app\models\FshGroupofgroups;
-use app\models\SvCatalog;
-use app\models\SvGroupofcat;
-use app\models\SvGroupofgroups;
 use Yii;
 use app\models\Products;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ArrayDataProvider;
-use yii\sphinx\Query;
-use yii\db\Expression;
+//use yii\sphinx\Query;  
 use app\models\OrderForm;
 use dektrium\user\models\User;
 use yii\web\Response;
@@ -26,7 +19,6 @@ use yii\bootstrap\ActiveForm;
 
 use yii\helpers\VarDumper;
 
-//use yii\base\Event;
 
 /**
  * ProductsController implements the CRUD actions for Products model.

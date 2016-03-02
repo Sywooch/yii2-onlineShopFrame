@@ -63,7 +63,7 @@ function updateCatalog(data, scrollValue){
         url: data,
         cache: false,
         beforeSend: function () {
-           $('#ajaxContent').html('ดาวน์โหลด...');
+           $('#ajaxContent').html('downloading...');
         },
         success: function (answer) {
             $('#ajaxContent').html(answer);
