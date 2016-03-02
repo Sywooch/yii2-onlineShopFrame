@@ -79,7 +79,7 @@ $config = [
 
         'cart' => [
             'class' => 'yz\shoppingcart\ShoppingCart',
-            'cartId' => 'alfElectro_cart',
+            'cartId' => 'app_cart',
         ],
 
         'reCaptcha' => [
